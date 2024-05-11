@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +9,13 @@ public class mouvement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     //private SpriteRenderer spriteRenderer;
-    private float raycastDistance = 0.1f;
+    
     public LayerMask groundLayer;
     public bool isGrounded;
     public Transform respawnpoint;
     public Health healthscript;
     private Vector3 previousPosition; // Store the previous position of the player
+    public SpriteRenderer spriteRenderer;
 
 
     void Start()
@@ -27,52 +29,37 @@ public class mouvement : MonoBehaviour
         
         Vector2 movement = Vector2.zero;
 
-        // Handle arrow key input       
-        if (Input.GetKey(KeyCode.A)||(Input.GetKey(KeyCode.LeftArrow)))
+        var x = Input.GetAxis("Horizontal");
+        transform.Translate(new Vector2(x, 0) * moveSpeed * Time.deltaTime);
+        if(x < 0)
         {
-            movement = Vector2.left * moveSpeed;
-            rb.velocity = new Vector2(movement.x, rb.velocity.y);
-            //spriteRenderer.flipX = true;
+            flip(true);
         }
-        else if (Input.GetKey(KeyCode.D)||(Input.GetKey(KeyCode.RightArrow)))
+        else if(x > 0)
         {
-            movement = Vector2.right * moveSpeed;
-            rb.velocity = new Vector2(movement.x, rb.velocity.y);
-
-            // spriteRenderer.flipX = false;
-
+            flip(false);   
         }
-        Vector2 raycastOrigin = transform.position - new Vector3(0f, 0.30f, 0f); // Adjust the Y value as needed
-
-        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, raycastDistance, groundLayer);
+        
 
         // Check if the ray hits something on the ground layer
-        if (hit.collider != null)
-        {
-            // Player is grounded
-            isGrounded = true;
-            Debug.Log(isGrounded);
-        }
-        else
-        {
-            // Player is not grounded
-            isGrounded = false;
-        }
-        Debug.DrawRay(raycastOrigin, Vector2.down * raycastDistance, Color.green);
+       
 
         // Now you can use the isGrounded flag to control player actions such as jumping.
-        if (isGrounded)
-        {
-            // Player is grounded, allow jumping
-            if (Input.GetKey(KeyCode.UpArrow)||(Input.GetKey(KeyCode.W)))
-            {
+        
+            if(Input.GetKeyDown(KeyCode.W)) {
+            Debug.Log("3");
                 Jump();
             }
-        }
+        
     }
     void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Debug.Log("1");
+        if (isGrounded)
+        {
+            Debug.Log("2");
+        rb.AddForce(Vector2.up * jumpForce);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -82,8 +69,22 @@ public class mouvement : MonoBehaviour
             healthscript.health -= 1;
         }
     }
-    private void LateUpdate()
+    public void flip(bool fliptype)
     {
-        previousPosition = transform.position;
+        spriteRenderer.flipX = fliptype;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }
