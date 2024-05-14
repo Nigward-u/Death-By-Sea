@@ -6,21 +6,23 @@ using UnityEngine;
 
 public class enemybehavior : MonoBehaviour
 {
-    public GameObject pointA, pointB,RayOrigin,attackrange;
+    public GameObject pointA, pointB,RayOrigin,attackrange/*,Player*/;
     private Rigidbody2D rb;
     private Animator a;
     private Transform currentpos;
     public float speed;
     public SpriteRenderer spriteRenderer;
     private Vector2 raydir;
-    public Health health;
+    //public Health health;
+    
     public LayerMask player;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentpos = pointA.transform;
-        
+        //Player = GameObject.Find("player");
+        //Health health =Player.GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -68,11 +70,11 @@ public class enemybehavior : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-    public void attack()
-    {
-        //attack animation
-        health.health--;
-    }
+    //public void attack()
+    //{
+    //    //attack animation
+    //    health.health--;
+    //}
                     
 
 }

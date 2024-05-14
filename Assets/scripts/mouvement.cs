@@ -31,22 +31,26 @@ public class mouvement : MonoBehaviour
 
         var x = Input.GetAxis("Horizontal");
         transform.Translate(new Vector2(x, 0) * moveSpeed * Time.deltaTime);
+        
         if(x < 0)
         {
-            flip(true);
+            //flip(true);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if(x > 0)
         {
-            flip(false);   
+           // flip(false); 
+            transform.localScale = new Vector3(1, 1, 1);
+
         }
-        
+
 
         // Check if the ray hits something on the ground layer
-       
+
 
         // Now you can use the isGrounded flag to control player actions such as jumping.
-        
-            if(Input.GetKeyDown(KeyCode.W)) {
+
+        if (Input.GetKeyDown(KeyCode.W)) {
             Debug.Log("3");
                 Jump();
             }
