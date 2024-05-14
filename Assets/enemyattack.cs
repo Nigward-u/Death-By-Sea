@@ -6,19 +6,17 @@ public class enemyattack : MonoBehaviour
 {
 
     public enemybehavior enemy;
-<<<<<<< Updated upstream
-=======
     public GameObject Player;
     
->>>>>>> Stashed changes
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-<<<<<<< Updated upstream
+
             enemy.attack();
-=======
+
             if (enemy.ReadyToAttack)
             {
 
@@ -28,7 +26,7 @@ public class enemyattack : MonoBehaviour
             }
             ;
             //enemy.attack();
->>>>>>> Stashed changes
+
         }
     }
 }
