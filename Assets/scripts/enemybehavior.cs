@@ -13,7 +13,13 @@ public class enemybehavior : MonoBehaviour
     public float speed;
     public SpriteRenderer spriteRenderer;
     private Vector2 raydir;
+<<<<<<< Updated upstream
     public Health health;
+=======
+    public bool ReadyToAttack,IsAttacking;
+    //public Health health;
+    
+>>>>>>> Stashed changes
     public LayerMask player;
     // Start is called before the first frame update
     void Start()
@@ -58,6 +64,12 @@ public class enemybehavior : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
             Invoke("ResetMovement", 1f);
         }
+        if (IsAttacking)
+        {
+            Invoke("attackReset", 1.5f);
+
+        }
+
     }
     public void flip(bool fliptype)
     {
@@ -68,10 +80,23 @@ public class enemybehavior : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+<<<<<<< Updated upstream
     public void attack()
     {
         //attack animation
         health.health--;
+=======
+
+    //public void attack()
+    //{
+    //    //attack animation
+    //    health.health--;
+    //}
+    void attackReset()
+    {
+        IsAttacking = false;
+        ReadyToAttack = true;
+>>>>>>> Stashed changes
     }
                     
 
