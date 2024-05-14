@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8470437021090041408}
+  Player: {fileID: 0}
 --- !u!1 &4866934182587710264
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +315,6 @@ MonoBehaviour:
   attackrange: {fileID: 3884737538470246864}
   speed: 1
   spriteRenderer: {fileID: 30998006878173835}
-  health: {fileID: 0}
   player:
     serializedVersion: 2
     m_Bits: 128
@@ -359,6 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5489156673540879017}
   - component: {fileID: 30998006878173835}
+  - component: {fileID: 5870606542819607634}
   m_Layer: 0
   m_Name: Walk_0
   m_TagString: Untagged
@@ -433,3 +434,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5870606542819607634
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417874379490908020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f35d5647e4a57234a91f78a0ae61db36, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
