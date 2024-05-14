@@ -7,6 +7,7 @@ TagManager:
   - void
   - Ground
   - enemy
+  - destroy
   layers:
   - Default
   - TransparentFX

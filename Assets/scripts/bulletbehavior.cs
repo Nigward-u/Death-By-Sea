@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class bulletbehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(0, -10,0) * Time.deltaTime;
+
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        {
+            Debug.Log("t");
+            if (other.tag == "destroy")
+            {
+                Debug.Log('d');
+                Destroy(gameObject);
+            }
+        }
+    }
+
+
 }

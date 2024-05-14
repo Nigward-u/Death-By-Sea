@@ -20,11 +20,11 @@ public class BossAttack : MonoBehaviour
         if (isAttacking)
         {
             spawnpoint = Random.Range(0, spawnlocation.Length);
-            Debug.Log(spawnpoint);
+            
             
             Instantiate(bullet, spawnlocation[spawnpoint].position,Quaternion.identity);
             isAttacking = false;
-            Invoke("resetattack", 0.2f);
+            Invoke("resetattack", 0.3f);
         }
     }
     void resetattack()

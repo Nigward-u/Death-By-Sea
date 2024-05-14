@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 public class mouvement2 : MonoBehaviour
 {
+    Health health;
     public float speed;
     
 
     // Use this for initialization
     void Start()
     {
+        health = GetComponent<Health>();
         
     }
 
@@ -39,5 +41,12 @@ public class mouvement2 : MonoBehaviour
            
         }
         transform.Translate(moveDirection * speed * Time.deltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag=="bullet") {
+            health.health--;
+        
+        }
     }
 }
