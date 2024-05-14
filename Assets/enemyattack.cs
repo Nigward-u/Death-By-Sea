@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyattack : MonoBehaviour
+public class Enemyattack : MonoBehaviour
 {
-
     public enemybehavior enemy;
     public GameObject Player;
-    
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-
-            enemy.attack();
-
             if (enemy.ReadyToAttack)
             {
 
@@ -24,9 +18,8 @@ public class enemyattack : MonoBehaviour
                 health.health--;
                 enemy.IsAttacking = true;
             }
-            ;
-            //enemy.attack();
 
+            //enemy.attack();
         }
     }
 }
