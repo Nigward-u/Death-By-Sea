@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2303760199842878915}
   - component: {fileID: 6387984335528076629}
   - component: {fileID: 2776212243381329933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: attackrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3153596156495988399}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rayorigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,9 +200,10 @@ GameObject:
   - component: {fileID: 8995113212879398034}
   - component: {fileID: 3667108389314543889}
   - component: {fileID: 8470437021090041408}
-  m_Layer: 0
+  - component: {fileID: 2309014132856639842}
+  m_Layer: 6
   m_Name: enemy1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,9 +316,30 @@ MonoBehaviour:
   attackrange: {fileID: 3884737538470246864}
   speed: 1
   spriteRenderer: {fileID: 30998006878173835}
+  ReadyToAttack: 0
+  IsAttacking: 0
+  anim: {fileID: 0}
   player:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &2309014132856639842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104692518843356171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dbc8d244be3184798490ceff0302dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Maxhealth: 100
+  currenthealth: 100
+  anim: {fileID: 0}
+  body: {fileID: 0}
+  enemy: {fileID: 8470437021090041408}
+  enemyattack: {fileID: 3884737538470246864}
 --- !u!1 &7309912193123545221
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +382,7 @@ GameObject:
   - component: {fileID: 5489156673540879017}
   - component: {fileID: 30998006878173835}
   - component: {fileID: 5870606542819607634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walk_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

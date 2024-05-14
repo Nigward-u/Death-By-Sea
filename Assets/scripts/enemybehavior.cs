@@ -16,6 +16,7 @@ public class enemybehavior : MonoBehaviour
     private Vector2 raydir;
     public bool ReadyToAttack, IsAttacking;
     //public Health health;
+    public Animator anim;
 
     public LayerMask player;
     // Start is called before the first frame update
@@ -27,11 +28,13 @@ public class enemybehavior : MonoBehaviour
         currentpos = pointA.transform;
         //Player = GameObject.Find("player");
         //Health health =Player.GetComponent<Health>();
+        anim=GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+            anim.SetBool("IsAttacking", false);
         if (IsAttacking == false) { 
             Vector2 point=currentpos.position-transform.position;
             if (currentpos == pointA.transform)
@@ -56,12 +59,12 @@ public class enemybehavior : MonoBehaviour
             }
         }
 
-        
+
         if (IsAttacking)
         {
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-            Invoke("attackReset", 1.5f);
-
+            Invoke("attackReset", 1f);
+            anim.SetBool("IsAttacking", true);
         }
     }
    

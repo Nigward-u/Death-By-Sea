@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyattack : MonoBehaviour
+public class Enemyattack : MonoBehaviour
 {
     public enemybehavior enemy;
     public GameObject Player;

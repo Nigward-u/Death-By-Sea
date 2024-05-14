@@ -8,7 +8,7 @@ public class attack1 : MonoBehaviour
     public Transform attackpoint;
     public LayerMask enemylayers;
 
-    public int AttackDammage;
+    public int AttackDammage=10;
     public float attackrange = 0.5f;
 
 
@@ -40,7 +40,7 @@ public class attack1 : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    private void Attack()
+    public void Attack()
     {
         animator.SetTrigger("attack");
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackpoint.position, attackrange, enemylayers);
