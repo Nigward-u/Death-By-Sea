@@ -11,8 +11,14 @@ public class enemyattack : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Health health=collision.GetComponent<Health>();
-            health.health--;
+            if (enemy.ReadyToAttack)
+            {
+
+                Health health = collision.GetComponent<Health>();
+                health.health--;
+                enemy.IsAttacking = true;
+            }
+            
             //enemy.attack();
         }
     }

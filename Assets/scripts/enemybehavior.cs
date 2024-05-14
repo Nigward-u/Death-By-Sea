@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class enemybehavior : MonoBehaviour
@@ -13,12 +14,15 @@ public class enemybehavior : MonoBehaviour
     public float speed;
     public SpriteRenderer spriteRenderer;
     private Vector2 raydir;
+    public bool ReadyToAttack, IsAttacking;
     //public Health health;
-    
+
     public LayerMask player;
     // Start is called before the first frame update
     void Start()
     {
+        ReadyToAttack = true;
+        IsAttacking = false;
         rb = GetComponent<Rigidbody2D>();
         currentpos = pointA.transform;
         //Player = GameObject.Find("player");
@@ -28,53 +32,53 @@ public class enemybehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 point=currentpos.position-transform.position;
-        if (currentpos == pointA.transform)
-        {
-            rb.velocity=new Vector2(-speed,0);
+        if (IsAttacking == false) { 
+            Vector2 point=currentpos.position-transform.position;
+            if (currentpos == pointA.transform)
+            {
+                rb.velocity=new Vector2(-speed,0);
             
-        }
-        else { rb.velocity=new Vector2(speed,0);
+            }
+            else { rb.velocity=new Vector2(speed,0);
             
             
 
-        }
-        if (Vector2.Distance(transform.position, currentpos.position) < 0.5f && currentpos == pointB.transform)
-        {
-            currentpos = pointA.transform;
-            transform.localScale = new Vector3(-1,1,1);
-        }
-        if (Vector2.Distance(transform.position, currentpos.position) < 0.5f && currentpos == pointA.transform)
-        {
-            currentpos = pointB.transform;
-            transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (Vector2.Distance(transform.position, currentpos.position) < 0.5f && currentpos == pointB.transform)
+            {
+                currentpos = pointA.transform;
+                transform.localScale = new Vector3(-1,1,1);
+            }
+            if (Vector2.Distance(transform.position, currentpos.position) < 0.5f && currentpos == pointA.transform)
+            {
+                currentpos = pointB.transform;
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
-        RaycastHit2D seeplayer = Physics2D.Raycast(RayOrigin.transform.position, raydir, 1f, player) ;
-        Debug.DrawRay(RayOrigin.transform.position, raydir * 2f, color:Color.green);
-        if (seeplayer.collider == null)
+        
+        if (IsAttacking)
         {
-            return;
-        }
-        else if (seeplayer.collider.CompareTag("Player") ){
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-            Invoke("ResetMovement", 1f);
+            Invoke("attackReset", 1.5f);
+
         }
     }
-    public void flip(bool fliptype)
+   
+    void attackReset()
     {
-        spriteRenderer.flipX = fliptype;
-    }
-    void ResetMovement()
-    {
+        IsAttacking = false;
+        ReadyToAttack = true;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
     }
+
     //public void attack()
     //{
     //    //attack animation
     //    health.health--;
     //}
-                    
+
 
 }
