@@ -7,6 +7,8 @@ TagManager:
   - void
   - Ground
   - enemy
+  - destroy
+  - bullet
   layers:
   - Default
   - TransparentFX

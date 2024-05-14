@@ -11,6 +11,7 @@ public class Enemyattack : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+
             if (enemy.ReadyToAttack)
             {
 
