@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     public Sprite fullhearts;
     public Sprite emptyhearts;
 
-    //public GameObject deadmenu;
+    public GameObject deadmenu;
 
     //public Animator anim;
 
@@ -48,24 +48,25 @@ public class Health : MonoBehaviour
         if (health == 0)
         {
             //anim.SetBool("dead", true);
-            //deadmenu.SetActive(true);
+            deadmenu.SetActive(true);
         }
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("heart"))
-    //    {
-    //        Destroy(other.gameObject);
-    //        if (health == NumOfhearts)
-    //        {
-    //            health += 1;
-    //            NumOfhearts += 1;
-    //        }
-    //        else if (health < NumOfhearts)
-    //        {
-    //            health += 1;
-    //        }
 
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("heart"))
+        {
+            Destroy(collision.gameObject);
+            if (health == NumOfhearts)
+            {
+                health += 1;
+                NumOfhearts += 1;
+            }
+            else if (health < NumOfhearts)
+            {
+                health += 1;
+            }
+
+        }
+    }
 }
