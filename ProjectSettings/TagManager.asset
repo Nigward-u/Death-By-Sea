@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - destroy
   - bullet
+  - bubble
   layers:
   - Default
   - TransparentFX

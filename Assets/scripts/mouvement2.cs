@@ -4,6 +4,8 @@ public class mouvement2 : MonoBehaviour
 {
     Health health;
     public float speed;
+    public waterBehavior w1, w2;
+    public GameObject boss;
     
 
     // Use this for initialization
@@ -47,6 +49,13 @@ public class mouvement2 : MonoBehaviour
         if (collision.tag=="bullet") {
             health.health--;
         
+        }
+        if (collision.tag == "bubble")
+        {
+            Debug.Log(-1);
+            boss.GetComponent<BossAttack>().hp--;
+            w1.resetpos();
+            w2.resetpos();
         }
     }
 }
