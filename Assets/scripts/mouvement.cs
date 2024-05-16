@@ -16,12 +16,15 @@ public class mouvement : MonoBehaviour
     public Health healthscript;
     private Vector3 previousPosition; // Store the previous position of the player
     public SpriteRenderer spriteRenderer;
+    
+    public GameObject pausemenu;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //spriteRenderer = GetComponent<SpriteRenderer>();
+        resume();
     }
     Vector2 movement = Vector2.zero;
     void Update()
@@ -54,7 +57,7 @@ public class mouvement : MonoBehaviour
             Debug.Log("3");
                 Jump();
             }
-        
+        pause();
     }
     void Jump()
     {
@@ -90,5 +93,20 @@ public class mouvement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+    void pause ()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pausemenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void resume()
+    {
+        Time.timeScale = 1.0f;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class waterBehavior : MonoBehaviour
 {
     public bool left;
-    float x =- 0.0015f;
+    float x =- 0.2f;
     Vector3 startpos;
+    public Health health ;
     void Start()
     {
         if (left)
@@ -25,11 +27,19 @@ public class waterBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(x,0,0);
+        transform.position += new Vector3(x,0,0)*Time.deltaTime;
         
     }
     public void resetpos()
     {
         transform.position = startpos;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag=="Player")
+        {
+            Time.timeScale = 0;
+            health.health = 0;
+        }
     }
 }

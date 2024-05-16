@@ -49,6 +49,8 @@ public class Health : MonoBehaviour
         {
             //anim.SetBool("dead", true);
             deadmenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

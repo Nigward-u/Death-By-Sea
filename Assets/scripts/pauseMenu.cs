@@ -13,18 +13,13 @@ public class pauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(buildIndex);
     }
-     void Update()
-    {
-        pause(); 
-    }
+
     public void pause()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
+
             pausemenu.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState= CursorLockMode.None;
-        }
 
     }
     public void home()

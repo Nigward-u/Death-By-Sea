@@ -1,18 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class mouvement2 : MonoBehaviour
 {
     Health health;
     public float speed;
     public waterBehavior w1, w2;
     public GameObject boss;
-    
+    public GameObject pausemenu;
 
     // Use this for initialization
     void Start()
     {
         health = GetComponent<Health>();
-        
+        resume();
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class mouvement2 : MonoBehaviour
            
         }
         transform.Translate(moveDirection * speed * Time.deltaTime);
+        pause();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -57,5 +59,25 @@ public class mouvement2 : MonoBehaviour
             w1.resetpos();
             w2.resetpos();
         }
+        if(collision.tag == "Hand")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
+    }
+    void pause()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pausemenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    public void resume()
+    {
+        Time.timeScale = 1.0f;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 }
